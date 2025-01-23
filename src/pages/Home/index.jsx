@@ -26,6 +26,7 @@ const Home = () => {
     return (
         <section className="w-full max-w-7xl mx-auto min-h-screen bg-gray-900 text-gray-200 px-4 py-10 sm:px-6 md:px-8">
             <h1 className="text-4xl font-light text-center">Hi, Sign Up or Sign In</h1>
+            <p>This is a simple test for checking it's ok !</p>
             {/* <div className="pt-10">
                 <h1>Liste des Utilisateurs</h1>
                 <ul>
