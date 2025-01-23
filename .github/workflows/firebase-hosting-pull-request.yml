@@ -12,8 +12,15 @@ jobs:
     if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
     steps:
+      # Étape 1 : Récupération du code source
       - uses: actions/checkout@v4
+
+      # Étape 2 : Installation des dépendances et Build du projet
       - run: npm ci && npm run build
+        env:
+          VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
+
+      # Étape 3 : Prévisualisation sur Firebase Hosting
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
