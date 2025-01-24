@@ -1,15 +1,17 @@
 import React from "react";
+import Header from '../../components/Header'
 import { ReactTyped } from "react-typed";
 
 const Home = () => {
-
+    // bg-gray-900 
     return (
-        <section className="w-full max-w-7xl mx-auto min-h-screen bg-gray-900 text-gray-200 px-4 py-10 sm:px-6 md:px-8">
-            <h1 className="text-4xl font-light text-center">
+        <section className="w-full max-w-7xl mx-auto min-h-screen bg-[url(/src/assets/images/snipper.jpg)] bg-center bg-cover text-gray-200 pt-5 pb-10 px-4 sm:px-6 md:px-8">
+            <Header />
+            <h1 className="text-4xl font-light mt-10">
                 <ReactTyped
                     strings={[
                         "Hi, Sign Up or Sign In",
-                        "Welcome to the app",
+                        "Welcome to the Gun Shop",
                         "Enjoy your experience!",
                     ]}
                     typeSpeed={50} // Vitesse d'écriture

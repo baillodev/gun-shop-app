@@ -1,12 +1,14 @@
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
-import Header from './components/Header'
+import Login from './components/Login'
+import Register from './components/Register'
 
 function App() {
 
   return (
     <>
-      <Header />
+      <Register />
+      <Login />
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>
