@@ -8,7 +8,7 @@ const Home = () => {
         <section className="min-h-screen bg-[url(/src/assets/images/snipper.jpg)] bg-center bg-cover">
             <div className="w-full max-w-7xl mx-auto text-gray-200 pt-6 px-4 sm:px-6 md:px-8">
                 <Header />
-                <h1 className="text-4xl font-light mt-10">
+                <h1 className="text-4xl font-light mt-10 px-4 sm:px-6 md:px-8">
                     <ReactTyped
                         strings={[
                             "Hi, Sign Up or Sign In",
