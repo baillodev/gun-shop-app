@@ -1,15 +1,15 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useUser } from '../contexts/userContext'
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-    const { modalState, toggleModals, signIn } = useUser()
+    const { modalState, toggleModals, signIn, currentUser } = useUser()
     const navigate = useNavigate()
 
     const [validation, setValidation] = useState("")
-    
-    const inputs = useRef([])
+
+    const inputs = useRef([])  // Références pour les champs
     const formRef = useRef()
 
     const addInputs = el => {
@@ -18,19 +18,13 @@ const Login = () => {
         }
     }
 
-    const handlForm = async e => {
+    const handleForm = async (e) => {
         e.preventDefault()
 
         try {
-            const cred = await signIn(
-                inputs.current[0].value,
-                inputs.current[1].value
-            )
-            formRef.current.reset() // à tester
+            await signIn(inputs.current[0].value, inputs.current[1].value)
+            formRef.current.reset()
             closeModal()
-            // console.log(cred)
-            navigate('/private/private-home')
-
         } catch {
             setValidation("Oups! Email and/or password incorrect")
         }
@@ -40,6 +34,14 @@ const Login = () => {
         setValidation("")
         toggleModals('close')
     }
+
+    // Utilisation de useEffect pour gérer la navigation après la connexion
+    useEffect(() => {
+        if (currentUser) {
+            // Vérifier le rôle et naviguer vers la page appropriée
+            navigate(currentUser.role === 'admin' ? '/dashboard' : '/store')
+        }
+    }, [currentUser, navigate])  // Déclenche quand currentUser change
 
     return (
         <>
@@ -64,7 +66,7 @@ const Login = () => {
                         </div>
                         <form 
                             ref={formRef}
-                            onSubmit={handlForm}
+                            onSubmit={handleForm}
                             className='p-5 flex flex-col gap-3'
                         >
                             <div className='flex flex-col gap-2'>
@@ -76,7 +78,6 @@ const Login = () => {
                                     id='email'
                                     name='email'
                                 />
-                                <div className='text-sm text-red-500'></div>
                             </div>
                             <div className='flex flex-col gap-2'>
                                 <label htmlFor="password">Password</label>

@@ -18,7 +18,7 @@ const Register = () => {
         }
     }
 
-    const handlForm = async e => {
+    const handleForm = async e => {
         e.preventDefault()
         
         if ((inputs.current[1].value.length || inputs.current[2].value.length) < 6) {
@@ -37,7 +37,7 @@ const Register = () => {
             formRef.current.reset()
             closeModal()
             // console.log(cred)
-            navigate('/private/private-home')
+            navigate('/store')
 
         } catch (error) {
             if (error.code === 'auth/invalid-email') {
@@ -78,7 +78,7 @@ const Register = () => {
                         </div>
                         <form 
                             ref={formRef}
-                            onSubmit={handlForm}
+                            onSubmit={handleForm}
                             className='p-5 flex flex-col gap-3'
                         >
                             <div className='flex flex-col gap-2'>
@@ -104,7 +104,7 @@ const Register = () => {
                                 <div className='text-sm text-red-500'></div>
                             </div>
                             <div className='flex flex-col gap-2'>
-                                <label htmlFor="confimPassword">Confirm Password</label>
+                                <label htmlFor="confirmPassword">Confirm Password</label>
                                 <input
                                     ref={addInputs}
                                     className='border border-gray-200 rounded-lg p-2 focus:outline-none focus:ring focus:ring-blue-300'
